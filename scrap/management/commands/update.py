@@ -8,7 +8,11 @@ class Command(BaseCommand):
     help = 'met a jour la base de donnee'
     
     def handle(self, *args, **options):
-        response = requests.get('https://physique.mp2i-champo.fr/')
+        headers = {
+        "Accept-Language" : "en-US,en;q=0.5",
+        "User-Agent": "Defined",
+        }
+        response = requests.get('https://physique.mp2i-champo.fr/', headers=headers)
 
         soup = BeautifulSoup(response.text, 'html.parser')
 
