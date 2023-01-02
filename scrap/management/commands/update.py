@@ -8,11 +8,17 @@ class Command(BaseCommand):
     help = 'met a jour la base de donnee'
     
     def handle(self, *args, **options):
+        
         headers = {
         "Accept-Language" : "en-US,en;q=0.5",
         "User-Agent": "Defined",
         }
-        response = requests.get('https://physique.mp2i-champo.fr/', headers=headers)
+        proxies = {
+        "http": "http://185.15.172.212:3128",
+        "https": "http://185.15.172.212:3128",
+        }
+
+        response = requests.get('https://physique.mp2i-champo.fr/', headers=headers, proxies=proxies)
 
         soup = BeautifulSoup(response.text, 'html.parser')
 
