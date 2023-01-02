@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% for cat, documents in documents_by_category.items %}
+<div class="w3-content w3-container w3-padding-64" id="{{ cat.title }}">
+  <h2 class="w3-center">{{ cat.title }}</h2>
+  <center> <p>{{ cat.description }}</p> </center>
+
+  <table class="w3-table w3-striped w3-bordered">
+    <tbody><tr>
+      <th colspan="2" class="w3-center"> {{ cat.libele }}</th>
+      <th style="text-align: center;"> Documents </th>
+    </tr>
+    <tr>
+      {% for doc in documents %}
+      <td>{{ forloop.counter }}</td>
+      <td>{{ doc.title }}</td>
+      <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="{{ doc.link }}"><span class="icon-pdf"></span> </a></td>
+    </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endfor %}
+
+{% endblock %}
