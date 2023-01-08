@@ -40,18 +40,20 @@ class Command(BaseCommand):
                     break
                 elif sibling.name == "p": # on s'interresse que au balise p
                     compteur_doc += 1
-                    text = sibling.get_text()
-                    text = text.replace("\n","")
+
                 # On lui attribue son nom, le lien ou il se trouve ainsi que sa categorie
                     lien, created = Document.objects.get_or_create(pk=compteur_doc)
-                    lien.title = text
+                    lien.title = "ERREUR"
                     lien.categorie = cat
-                    print("On ajoute :" + text)
+                    print("On ajoute :" + sibling.get_text())
             
                     #le lien (on traite le cas ou il existe pas)
                     link = sibling.find('a')
                     if link:
                         href = link.get('href')
+                        text = link.get_text()
+                        text = text.replace("\n","")
+                        lien.title = text
                         lien.link = href
                     else:
                         lien.link = "404"
