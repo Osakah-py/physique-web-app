@@ -18,7 +18,7 @@ class Command(BaseCommand):
         "https": "http://185.15.172.212:3128",
         }
 
-        response = requests.get('https://physique.mp2i-champo.fr/', headers=headers, proxies=proxies)
+        response = requests.get('https://physique.mp2i-champo.fr/', headers=headers)
 
         soup = BeautifulSoup(response.text, 'html.parser')
 
