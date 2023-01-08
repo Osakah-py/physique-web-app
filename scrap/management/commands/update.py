@@ -55,8 +55,18 @@ class Command(BaseCommand):
                         text = text.replace("\n","")
                         lien.title = text
                         lien.link = href
+                        # on sauvegarde
+                        lien.save()
+                        if sibling.get_text() != link.get_text():
+                            
+                            correction = sibling.find('a')
+                            if correction:
+                                corr, created = Document.objects.get_or_create(pk=compteur_doc)
+                                text = correction.get_text()
+                                text = text.replace("\n","")
+                                corr.title = text
+                                corr.link = correction.get('href')
+                                corr.save()
                     else:
                         lien.link = "404"
-            
-                    # on sauvegarde
-                    lien.save()
+                        lien.save()
