@@ -12,12 +12,24 @@
     <tbody><tr>
       <th colspan="2" class="w3-center"> {{ cat.libele }}</th>
       <th style="text-align: center;"> Documents </th>
+      {% if cat.corrections %}
+      <th style="text-align: center;">Corrections</th>
+      {% endif %}
     </tr>
     <tr>
-      {% for doc in documents %}
+      {% for doc,corr in documents %}
       <td>{{ forloop.counter }}</td>
       <td>{{ doc.title }}</td>
       <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="https://physique.mp2i-champo.fr/{{ doc.link }}"><span class="icon-pdf"></span> </a></td>
+      {% if cat.corrections %}
+      {% if corr != 'N/A' %}
+      <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="https://physique.mp2i-champo.fr/{{ corr.link }}"><span class="icon-pdf"></span> </a></td>
+      {{ doc }}::{{ corr }}
+      {% else %}
+      <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href=""> </a></td>
+      {% endif %}
+      {% endif %}
+      
     </tr>
       {% endfor %}
     </tbody>
