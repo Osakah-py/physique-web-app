@@ -39,34 +39,16 @@ class Command(BaseCommand):
                 if sibling.name == "h2":  # on s'arrete au prochain h2
                     break
                 elif sibling.name == "p": # on s'interresse que au balise p
-                    compteur_doc += 1
-
-                # On lui attribue son nom, le lien ou il se trouve ainsi que sa categorie
-                    lien, created = Document.objects.get_or_create(pk=compteur_doc)
-                    lien.title = "ERREUR"
-                    lien.categorie = cat
-                    print("On ajoute :" + sibling.get_text())
-            
-                    #le lien (on traite le cas ou il existe pas)
-                    link = sibling.find('a')
-                    if link:
-                        href = link.get('href')
-                        text = link.get_text()
-                        text = text.replace("\n","")
-                        lien.title = text
-                        lien.link = href
-                        # on sauvegarde
-                        lien.save()
-                        if sibling.get_text() != link.get_text():
-                            
-                            correction = sibling.find('a')
-                            if correction:
-                                corr, created = Document.objects.get_or_create(pk=compteur_doc)
-                                text = correction.get_text()
-                                text = text.replace("\n","")
-                                corr.title = text
-                                corr.link = correction.get('href')
-                                corr.save()
-                    else:
-                        lien.link = "404"
-                        lien.save()
+                    for balise in sibling: # on cherche tout les liens 
+                        if balise.name == "a" and balise.get_text() != " annexe ":
+                            compteur_doc += 1
+                        # On lui attribue son nom, le lien ou il se trouve ainsi que sa categorie
+                            lien, created = Document.objects.get_or_create(pk=compteur_doc)
+                            text = balise.get_text()
+                            text = text.replace("\n","")
+                            lien.title = text
+                            lien.categorie = cat
+                            print("On ajoute :" + balise.get_text())
+                            href = balise.get('href')
+                            lien.link = href
+                            lien.save()
