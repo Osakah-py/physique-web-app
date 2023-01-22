@@ -41,7 +41,21 @@ def accueil(request):
     for category in categories:
         correction = Document.objects.filter(categorie=category, title__icontains='correction')
         documents = Document.objects.filter(categorie=category).exclude(title__icontains='correction')
-        documents_by_category[category] = itertools.zip_longest(documents,correction,fillvalue='N/A')
+        l_doc = len(documents)
+        l_corr = len(correction)
+        c = 0
+        documents_by_category[category] = []
+        for i in range(l_doc):
+            if c >= l_corr: 
+                documents_by_category[category].append((documents[i], "N/A"))
+            elif "bonus" in documents[i].title or "11" in documents[i].title:
+                documents_by_category[category].append((documents[i], "N/A"))
+            else : 
+                documents_by_category[category].append((documents[i], correction[c]))
+                c += 1
+            
+
+            # documents_by_category[category] = itertools.zip_longest(documents,correction,fillvalue='N/A')
 
     return render(request, 'home.html', {'documents_by_category': documents_by_category})
 
