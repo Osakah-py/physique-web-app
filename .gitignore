@@ -13,6 +13,7 @@ venv/
 
 # Dossier "static" à la racine du projet
 /static/
+/scrap/static/image
 
 # macOS
 ._*
