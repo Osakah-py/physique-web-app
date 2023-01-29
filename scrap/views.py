@@ -59,7 +59,5 @@ def accueil(request):
 
     return render(request, 'home.html', {'documents_by_category': documents_by_category})
 
-def test(request):
-    categories = { 'DS': itertools.zip_longest(['DS1','DS2'],["correction DS 1", 'correction DS 2'],fillvalue='N/A'),
-    'TD': itertools.zip_longest(['TD1','TD2','TD3'],['correction TD 1', 'correction TD 2'],fillvalue='N/A')}
-    return render(request, 'test.html', {'categories': categories})
+def google(request):
+    return render(request, 'google311f29b3ed4bd3be.html')
