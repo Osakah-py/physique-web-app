@@ -14,7 +14,7 @@ class Categorie(models.Model):
 
 class Document(models.Model):
     title = models.CharField(max_length=200)
-    link = models.URLField(blank=True)
+    link = models.CharField(blank=True, max_length=200, help_text="Au format 'fichier.pdf' ")
     categorie = models.ForeignKey(Categorie, null=True, on_delete=models.CASCADE)
     
     def __str__(self):
