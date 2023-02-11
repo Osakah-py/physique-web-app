@@ -24,8 +24,8 @@ class Command(BaseCommand):
 
         compteur_cat = 0
         compteur_doc = 0
+        
         for heading in soup.find_all("h2"):  # trouver les separateurs, ici les h2
-    
         # On creer ou modifie la categorie
             compteur_cat += 1
             cat, created = Categorie.objects.get_or_create(pk=compteur_cat)
@@ -34,21 +34,25 @@ class Command(BaseCommand):
             cat.title = nom_de_cat
             cat.save()
             print("****\n On a ajouté la categorie : " + cat.title + "****")
+            tampon = [] # Pour sauvegarder dans le bon ordre
         # On creer ou modifie tout les documents de cette categorie
             for sibling in heading.find_next_siblings():
                 if sibling.name == "h2":  # on s'arrete au prochain h2
+                    while tampon:
+                        compteur_doc += 1
+                        t, l = tampon.pop()
+                        lien, created = Document.objects.get_or_create(pk=compteur_doc)
+                        # On lui attribue son nom, le lien ou il se trouve ainsi que sa categorie
+                        lien.title = t
+                        lien.categorie = cat
+                        lien.link = l
+                        lien.save()
                     break
                 elif sibling.name == "p": # on s'interresse que au balise p
                     for balise in sibling: # on cherche tout les liens 
                         if balise.name == "a" and balise.get_text() != " annexe ":
-                            compteur_doc += 1
-                        # On lui attribue son nom, le lien ou il se trouve ainsi que sa categorie
-                            lien, created = Document.objects.get_or_create(pk=compteur_doc)
                             text = balise.get_text()
                             text = text.replace("\n","")
-                            lien.title = text
-                            lien.categorie = cat
                             print("On ajoute :" + balise.get_text())
                             href = balise.get('href')
-                            lien.link = href
-                            lien.save()
+                            tampon.append((text, href))

@@ -39,12 +39,13 @@ def accueil(request):
 
     categories = Categorie.objects.order_by('pk')
     for category in categories:
-        correction = Document.objects.filter(categorie=category, title__icontains='correction')
-        documents = Document.objects.filter(categorie=category).exclude(title__icontains='correction')
+        correction = Document.objects.filter(categorie=category, title__icontains='correction').order_by('-pk')
+        documents = Document.objects.filter(categorie=category).exclude(title__icontains='correction').order_by('-pk')
         l_doc = len(documents)
         l_corr = len(correction)
         c = 0
         documents_by_category[category] = []
+        
         for i in range(l_doc):
             if c >= l_corr: 
                 documents_by_category[category].append((documents[i], "N/A"))
@@ -56,7 +57,6 @@ def accueil(request):
             
 
             # documents_by_category[category] = itertools.zip_longest(documents,correction,fillvalue='N/A')
-
     return render(request, 'home.html', {'documents_by_category': documents_by_category})
 
 def google(request):
