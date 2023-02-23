@@ -49,7 +49,7 @@ def accueil(request):
         for i in range(l_doc):
             if c >= l_corr: 
                 documents_by_category[category].append((documents[i], "N/A"))
-            elif "bonus" in documents[i].title or "13" in documents[i].title:
+            elif "bonus" in documents[i].title or ("13" in documents[i].title and not("13" in correction[i].title)):
                 documents_by_category[category].append((documents[i], "N/A"))
             else : 
                 documents_by_category[category].append((documents[i], correction[c]))
