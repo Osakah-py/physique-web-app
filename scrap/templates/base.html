@@ -131,7 +131,7 @@
           <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
             <i class="fa fa-bars"></i>
           </a>
-          <a href="#home" class="w3-bar-item w3-button">ACCUEIL</a>
+          <a href="/" class="w3-bar-item w3-button">ACCUEIL</a>
           {% for cat, documents in documents_by_category.items %}
           <a href="#{{ cat.title }}" class="w3-bar-item w3-button w3-hide-small">{{ cat.title }}</a>
           {% endfor %}
@@ -150,6 +150,8 @@
       <div class="bgimg-1 w3-display-container" id="home" style="opacity:0.9;display:block">
         <div class="w3-display-middle" style="white-space:nowrap;">
           <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">MP2I <span class="w3-hide-small">CHAMPOLLION</span><span class="w3-hide-large w3-hide-medium">CHAMPO</span></span>
+          {% if er404 %}<span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">ERREUR 404</span><br>
+        <center><span class="w3-center w3-padding w3-black w3-xlarge w3-wide w3-animate-opacity"><a href = "/">Retour au site</a></span></center>{% endif %}
         </div>
       </div>
 {% block content %}
