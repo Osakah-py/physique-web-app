@@ -1,0 +1,66 @@
+.icon-pdf {
+    background: url('/static/image/pdf.svg');
+    height: 48px;
+    width: 48px;
+    display: inline-block;
+    vertical-align: middle;
+    /* Other styles here */
+}
+.icon-pdf:hover{
+  transform: scale(1.2);}
+  
+.icon-pdf-bw {
+    background: url('../img/pdf_nb.svg');
+    height: 48px;
+    width: 48px;
+    display: inline-block;
+    vertical-align: middle;
+    /* Other styles here */
+}
+.icon-pdf-bw:hover{
+  transform: scale(1.2);}
+  
+.icon-zip {
+    background: url('../img/zip.svg');
+    height: 48px;
+    width: 48px;
+    display: inline-block;
+    vertical-align: middle;
+    /* Other styles here */
+}
+.icon-zip:hover{
+  transform: scale(1.2);}
+  
+.icon-sql {
+    background: url('../img/sql.svg');
+    height: 48px;
+    width: 48px;
+    display: inline-block;
+    vertical-align: middle;
+    /* Other styles here */
+}
+.icon-sql:hover{
+  transform: scale(1.2);}
+  
+  
+.icon-python {
+    background: url('../img/python.svg');
+    height: 48px;
+    width: 48px;
+    display: inline-block;
+    vertical-align: middle;
+    /* Other styles here */
+}
+.icon-python:hover{
+  transform: scale(1.2);}
+
+td {
+vertical-align: middle;}
+
+hr {width:60%;
+  height: 10px;
+  margin: auto;}
+
+.caption {
+    display: inline-block;
+}
