@@ -15,6 +15,7 @@ db.sqlite3
 /static/
 /scrap/static/image
 /chimie/media
+/media/
 
 # macOS
 ._*
