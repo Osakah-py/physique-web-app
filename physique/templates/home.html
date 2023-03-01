@@ -3,8 +3,14 @@
 {% block title %}La Physique en MP2I au lycée Champollion{% endblock %}
 {% block description %}Retrouvez tous les cours et TD de Physique abordés durant l'année, en MP2I à champo.{% endblock %}
 
-{% block content %}
+{% block navigation %}
+{% for cat, documents in documents_by_category.items %}
+<a href="#{{ cat.title }}" class="w3-bar-item w3-button w3-hide-small">{{ cat.title }}</a>
+{% endfor %}
+<a href="/chimie/" class="w3-bar-item w3-button w3-hide-small w3-right">Chimie&ensp;<i class="fas fa-flask"></i> </a>
+{% endblock %}
 
+{% block content %}
 
 {% for cat, documents in documents_by_category.items %}
 <div class="w3-content w3-container w3-padding-64" id="{{ cat.title }}">
