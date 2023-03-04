@@ -1,8 +1,20 @@
 {% extends 'base.html' %}
 
+<!-- Titre et description pour moteurs de recherche  -->
 {% block title %}La Chimie en MP2I au lycée Champollion (option SI){% endblock %}
 {% block description %}Retrouvez tous les cours et TD de Chimie abordés durant le second semestre pour les options SI, en MP2I à champo.{% endblock %}
 
+<!-- Titre de la page -->
+{% block image %}
+<span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
+  MP2I <span class="w3-hide-small">CHAMPOLLION</span><span class="w3-hide-large w3-hide-medium">CHAMPO</span>
+</span>
+<p class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
+CHIMIE
+</p>
+{% endblock %}
+
+<!-- Barre de navigation  -->
 {% block navigation %}
 {% for cat, documents in documents_by_category.items %}
 <a href="#{{ cat.title }}" class="w3-bar-item w3-button w3-hide-small">{{ cat.title }}</a>
@@ -10,8 +22,8 @@
 <a href="/" class="w3-bar-item w3-button w3-hide-small w3-right">Physique&ensp;<i class="fas fa-rocket"></i> </a>
 {% endblock %}
 
+<!-- Contenu de la page  -->
 {% block content %}
-
 {% for cat, documents in documents_by_category.items %}
 <div class="w3-content w3-container w3-padding-64" id="{{ cat.title }}">
   <h2 class="w3-center">{{ cat.title }}</h2>

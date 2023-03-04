@@ -10,8 +10,13 @@
 <a href="/chimie/" class="w3-bar-item w3-button w3-hide-small w3-right">Chimie&ensp;<i class="fas fa-flask"></i> </a>
 {% endblock %}
 
-{% block content %}
+{% block image %}
+<span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
+  MP2I <span class="w3-hide-small">CHAMPOLLION</span><span class="w3-hide-large w3-hide-medium">CHAMPO</span>
+</span>
+{% endblock %}
 
+{% block content %}
 {% for cat, documents in documents_by_category.items %}
 <div class="w3-content w3-container w3-padding-64" id="{{ cat.title }}">
   <h2 class="w3-center">{{ cat.title }}</h2>
