@@ -1,130 +1,141 @@
 {% load static %}
 <head>
+
+  <!-- Informations générales -->
   <title>{% block title %}{% endblock %}</title>
   <meta name="description" content="{% block description %}{% endblock %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta description="Le site des mathématiques et de l'informatique en MP2I  au lycée Champollion. Cours/TD/devoirs.">
-    <link rel="stylesheet" href="{% static 'css/w3.css' %}">
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-      <script src="https://kit.fontawesome.com/71d53a212d.js" crossorigin="anonymous"></script>
+    
+    <!---- CSS ---->
+        <link rel="stylesheet" href="{% static 'css/w3.css' %}">
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <!-- kit fontawesome -->
+        <script src="https://kit.fontawesome.com/71d53a212d.js" crossorigin="anonymous"></script>
 
-    <style>
-    body,h1,h2,h3F,h4,h5,h6 {font-family: "Lato", sans-serif;}
-    body, html {
-      height: 100%;
-      color: #777;
-      line-height: 1.8;
-      scroll-behavior: smooth;
-      transition-duration: 2000ms;
-    }
-    
-    /* Create a Parallax Effect */
-    .bgimg-1, .bgimg-2, .bgimg-3 {
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-    
-    /* First image (Logo. Full height) */
-    .bgimg-1 {
-      background-image: url('{% static 'image/Tso_Moriri_high.jpg' %}');
-      min-height: 100%;
-    }
-    
-    @media (max-width: 1160px) {
-    /* First image (Logo. Full height) */
-    .bgimg-1 {
-      background-image: url('{% static 'image/Tso_Moriri_high.jpg' %}');
-      min-height: 100%;
-    }
-    }
-    @media (max-width: 891px) {
-    /* First image (Logo. Full height) */
-    .bgimg-1 {
-      background-image: url('{% static 'image/Tso_Moriri.jpg' %}');
-      min-height: 100%;
-    }
-    }
-    
-    @media (max-width: 703px) {
-    /* First image (Logo. Full height) */
-    .bgimg-1 {
-      background-image: url('{% static 'image/Tso_Moriri.jpg' %}');
-      min-height: 100%;
-    }
-    }
-    
-    @media (max-width: 480px) {
-    /* First image (Logo. Full height) */
-    .bgimg-1 {
-      background-image: url('{% static 'image/Tso_Moriri.jpg' %}');
-      min-height: 100%;
-    }
-    }
-    /* Second image (Portfolio) */
-    .bgimg-2 {
-      background-image: url("{% static 'image/Tso_Moriri.jpg' %}");
-      min-height: 400px;
-    }
-    
-    @media (max-width: 480px) {
-    /* Second image (Portfolio) */
-    .bgimg-2 {
-      background-image: url("{% static 'image/Tso_Moriri.jpg' %}");
-      min-height: 400px;
-    }
-    }
-    
-    @media (max-width: 764px) {
-    /* Second image (Portfolio) */
-    .bgimg-2 {
-      background-image: url("{% static 'image/Tso_Moriri.jpg' %}");
-      min-height: 400px;
-    }
-    }
-    
-    @media (max-width: 988px) {
-    /* Second image (Portfolio) */
-    .bgimg-2 {
-      background-image: url("{% static 'image/Tso_Moriri.jpg' %}");
-      min-height: 400px;
-    }
-    }
-    
-    @media (max-width: 1200px) {
-    /* Second image (Portfolio) */
-    .bgimg-2 {
-      background-image: url("{% static 'image/Tso_Moriri_high.jpg' %}");
-      min-height: 400px;
-    }
-    }
-    
-    .w3-wide {letter-spacing: 10px;}
-    .w3-hover-opacity {cursor: pointer;}
-    
-    /* Turn off parallax scrolling for tablets and phones */
-    @media only screen and (max-device-width: 1600px) {
-      .bgimg-1, .bgimg-2, .bgimg-3 {
-        background-attachment: scroll;
-        min-height: 400px;
-      }
-    }
-    </style>
+        <!-- Gestion du paralax et polices -->
+        <style>
+        body,h1,h2,h3F,h4,h5,h6 {font-family: "Lato", sans-serif;}
+        body, html {
+          height: 100%;
+          color: #777;
+          line-height: 1.8;
+          scroll-behavior: smooth;
+          transition-duration: 2000ms;
+        }
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRGE1PTSV7"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        /* Create a Parallax Effect */
+        .bgimg-1, .bgimg-2, .bgimg-3 {
+          background-attachment: fixed;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
 
-      gtag('config', 'G-DRGE1PTSV7');
-    </script>
+        /* First image (Logo. Full height) */
+        .bgimg-1 {
+          background-image: url('{% static 'image/Tso_Moriri_high.jpg' %}');
+          min-height: 100%;
+        }
+
+        @media (max-width: 1160px) {
+        /* First image (Logo. Full height) */
+        .bgimg-1 {
+          background-image: url('{% static 'image/Tso_Moriri_high.jpg' %}');
+          min-height: 100%;
+        }
+        }
+        @media (max-width: 891px) {
+        /* First image (Logo. Full height) */
+        .bgimg-1 {
+          background-image: url('{% static 'image/Tso_Moriri.jpg' %}');
+          min-height: 100%;
+        }
+        }
+
+        @media (max-width: 703px) {
+        /* First image (Logo. Full height) */
+        .bgimg-1 {
+          background-image: url('{% static 'image/Tso_Moriri.jpg' %}');
+          min-height: 100%;
+        }
+        }
+
+        @media (max-width: 480px) {
+        /* First image (Logo. Full height) */
+        .bgimg-1 {
+          background-image: url('{% static 'image/Tso_Moriri.jpg' %}');
+          min-height: 100%;
+        }
+        }
+        /* Second image (Portfolio) */
+        .bgimg-2 {
+          background-image: url("{% static 'image/Tso_Moriri.jpg' %}");
+          min-height: 400px;
+        }
+
+        @media (max-width: 480px) {
+        /* Second image (Portfolio) */
+        .bgimg-2 {
+          background-image: url("{% static 'image/Tso_Moriri.jpg' %}");
+          min-height: 400px;
+        }
+        }
+
+        @media (max-width: 764px) {
+        /* Second image (Portfolio) */
+        .bgimg-2 {
+          background-image: url("{% static 'image/Tso_Moriri.jpg' %}");
+          min-height: 400px;
+        }
+        }
+
+        @media (max-width: 988px) {
+        /* Second image (Portfolio) */
+        .bgimg-2 {
+          background-image: url("{% static 'image/Tso_Moriri.jpg' %}");
+          min-height: 400px;
+        }
+        }
+
+        @media (max-width: 1200px) {
+        /* Second image (Portfolio) */
+        .bgimg-2 {
+          background-image: url("{% static 'image/Tso_Moriri_high.jpg' %}");
+          min-height: 400px;
+        }
+        }
+
+        .w3-wide {letter-spacing: 10px;}
+        .w3-hover-opacity {cursor: pointer;}
+
+        /* Turn off parallax scrolling for tablets and phones */
+        @media only screen and (max-device-width: 1600px) {
+          .bgimg-1, .bgimg-2, .bgimg-3 {
+            background-attachment: scroll;
+            min-height: 400px;
+          }
+        }
+        </style>
+    
+    <!---- JAVASCRIPT ---->
+        <!-- on inclut jQuery via CDN -->
+        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+        <!-- mon js -->
+        <script src="{% static 'js/mon.js' %}"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRGE1PTSV7"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-DRGE1PTSV7');
+        </script>
     </head>
+
 <body>
 <!-- Navbar (sit on top) -->
     <div class="w3-top">
@@ -145,7 +156,7 @@
         </div>
       </div>
 
-<!-- First Parallax Image with Logo Text  -->
+<!-- Parallax Image with Logo Text  -->
       <div class="bgimg-1 w3-display-container" id="home" style="opacity:0.9;display:block">
         <div class="w3-display-middle" style="white-space:nowrap;">
           {% block image %}{% endblock %}
@@ -153,6 +164,8 @@
       </div>
 {% block content %}
 {% endblock %}
+
+<!-- Js complémentaire (à regler : bug quand on scroll et qu'on revient en haut)  -->
 <script>
   // Modal Image Gallery
   function onClick(element) {
