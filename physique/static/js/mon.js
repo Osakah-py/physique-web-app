@@ -10,4 +10,14 @@ $(function() {
           }
     });
 
+    //Change le style de la barre de navigation quand on scroll
+    $(window).on('scroll', function() {
+        var navbar = $('#myNavbar');
+        // en dessous de 100 px on affiche le 'fond' de la navbar
+        if ($(window).scrollTop() > 100) {
+          navbar.addClass("w3-card w3-animate-opacity w3-white")
+        } else {
+          navbar.removeClass("w3-card w3-animate-opacity w3-white")
+        }
+    });
 });

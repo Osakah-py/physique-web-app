@@ -21,33 +21,34 @@
 
 <!-- Contenu de la page  -->
 {% block content %}
+
 {% for cat, documents in documents_by_category.items %}
-<div class="w3-content w3-container w3-padding-64" id="{{ cat.title }}">
+  <div class="w3-content w3-container w3-padding-64" id="{{ cat.title }}">
   <h2 class="w3-center">{{ cat.title }}</h2>
   <center> <p>{{ cat.description }}</p> </center>
 
   <table class="w3-table w3-striped w3-bordered">
     <tbody><tr>
       <th ><i class="fa-solid fa-sort sort"></i></th>
-      <th colspan="1" class="w3-center"> {{ cat.libele }}</th>
-      <th style="text-align: center;"> Documents </th>
-      {% if cat.corrections %}
-      <th style="text-align: center;">Corrections</th>
-      {% endif %}
+      {% for h in cat.get_head %}
+        {% if forloop.first %}
+          <th colspan="1" class="w3-center"> {{ h }}</th>
+        {% else %}
+          <th style="text-align: center;"> {{ h }}  </th>
+        {% endif %}
+      {% endfor %}
     </tr>
     <tr>
-      {% for doc,corr in documents %}
-      <td>{{ forloop.revcounter }}</td>
-      <td>{{ doc.title }}</td>
-      <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="https://physique.mp2i-champo.fr/{{ doc.link }}"><span class="icon-pdf"></span> </a></td>
-      {% if cat.corrections %}
-      {% if corr != 'N/A' %}
-      <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="https://physique.mp2i-champo.fr/{{ corr.link }}"><span class="icon-pdf"></span> </a></td>
-      {% else %}
-      <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href=""> </a></td>
-      {% endif %}
-      {% endif %}
-      
+      {% for doc in documents %}
+        <td>{{ forloop.revcounter }}</td>
+        <td>{{ doc.title }}</td>
+        {% for link in doc.split %}
+          {% if link != '' %}
+            <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="https://physique.mp2i-champo.fr/{{ link }}"><span class="icon-pdf"></span> </a></td>
+          {% else %}
+            <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href=""> </a></td>
+          {% endif %}
+      {% endfor %}
     </tr>
       {% endfor %}
     </tbody>
