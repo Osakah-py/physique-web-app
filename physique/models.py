@@ -8,6 +8,7 @@ class Categorie(models.Model):
     description = models.TextField(default=' ')
     entetes = models.CharField(max_length=200, help_text="Les entêtes du tableau séparées par des '/' \n Ex: Nom/Fichier/Correction", default='Nom')
     colonnes = models.PositiveIntegerField(default=1 ,help_text="Indiquer le nombre de colonne qu'il y aura (hors celle de numérotation)")
+    nombre_affichage = models.PositiveIntegerField(default=20 ,help_text="Corespond au nombre d'éléments qui seront affichés au chargement de la page")
 
     # permet de calculer le nombre de colonne a chaque enregistrement 
     def publish (self):

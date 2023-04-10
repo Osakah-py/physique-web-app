@@ -1,20 +1,244 @@
-<table>
-    {% for category, data in categories.items %}
-      <tr>
-        <td>{{ category }}</td>
-        <td>
-          <table>
+{% load static %}
+<html lang="en">
+<head>
+  <title>Doc</title>
+  <meta name="description" content="{% block description %}{% endblock %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta description="Le site des mathématiques et de l'informatique en MP2I  au lycée Champollion. Cours/TD/devoirs.">
+    
+    <!---- CSS ---->
+        <link rel="stylesheet" href="{% static 'css/w3.css' %}">
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <!-- kit fontawesome -->
+        <script src="https://kit.fontawesome.com/71d53a212d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="w3-content w3-container w3-padding-64" id="cours">
 
-            {% for doc,cor in data %} 
-            <tr> 
-                <td>{{ doc }}</td>
-                  <td>{{ cor }}</td>
-                  <td></td>
-              </tr>
-            {% endfor %}
-          </table>
-        </td>
+    <input id="myInput" class="w3-input w3-border" type="text" placeholder="Chercher..." required="">
+    
+    <table class="w3-table w3-striped w3-bordered">
+        <tbody id="3"><tr>
+          <th ><i id="sort" class="fa-solid fa-sort"></i></th>
+          <th colspan="1" class="w3-center">Chapitre</th>
+          <th style="text-align: center;">Notes de cours</th>
+          <th style="text-align: center;">Exercices</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Rudiments de logique</td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre1.pdf"><span class="icon-pdf"></span> </a></td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD1.pdf"><span class="icon-pdf"></span></a></td>
+        </tr>
+        <tr>
+        <td>2</td>
+        <td>Rappels et compléments calculatoires</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre2.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD2.pdf"><span class="icon-pdf"></span></a></td>
+        </tr><tr>
+          <td>3</td>
+          <td class="w3-hide-small">Rappels et compléments sur les fonctions numériques</td>
+          <td class="w3-hide-large w3-hide-medium">Fonctions numériques</td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre3.pdf"><span class="icon-pdf"></span> </a></td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD3.pdf"><span class="icon-pdf"></span></a></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Sommes, produits, systèmes</td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre4.pdf"><span class="icon-pdf"></span> </a></td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD4.pdf"><span class="icon-pdf"></span></a></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Fonctions usuelles</td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre5.pdf"><span class="icon-pdf"></span> </a></td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD5.pdf"><span class="icon-pdf"></span></a></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Ensembles</td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre6.pdf"><span class="icon-pdf"></span> </a></td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD6.pdf"><span class="icon-pdf"></span></a></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Nombres complexes</td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre7.pdf"><span class="icon-pdf"></span> </a></td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD7.pdf"><span class="icon-pdf"></span></a></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Introduction à la décomposition en éléments simples</td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre8.pdf"><span class="icon-pdf"></span> </a></td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD8.pdf"><span class="icon-pdf"></span></a></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Calcul de primitives et d'intégrales</td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre9.pdf"><span class="icon-pdf"></span> </a></td>
+          <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD9.pdf"><span class="icon-pdf"></span></a></td>
+        </tr>
+      
+      <tr>
+        <td>10</td>
+        <td>Équations différentielles linéaires et suites récurrentes linéaires</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre10.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD10.pdf"><span class="icon-pdf"></span></a></td>
       </tr>
-    {% endfor %}
-  </table>
-  
+      <tr>
+        <td>11</td>
+        <td>Applications, relations binaires</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre11.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD11.pdf"><span class="icon-pdf"></span></a></td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Nombres réels</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre12.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD12.pdf"><span class="icon-pdf"></span></a></td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>Suites numériques</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre13.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD13.pdf"><span class="icon-pdf"></span></a></td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td>Calcul matriciel</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre14.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD14.pdf"><span class="icon-pdf"></span></a></td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td>Structures algébriques</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre15.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD15.pdf"><span class="icon-pdf"></span></a></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><i>Le problème fait à la Toussuire sur les groupes</i></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/ski.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><!--<a href='./TD/TD15.pdf'><span class='icon-pdf'></span></a>--></td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td>Arithmétique</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre16.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD16.pdf"><span class="icon-pdf"></span></a></td>
+      </tr>
+      <tr>
+        <td>17</td>
+        <td>Limites, continuité</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre17.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD17.pdf"><span class="icon-pdf"></span></a></td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td>Polynômes</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre18.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD18.pdf"><span class="icon-pdf"></span></a></td>
+      </tr>
+      <tr>
+        <td>19</td>
+        <td>Analyse asymptotique</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre19.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD19.pdf"><span class="icon-pdf"></span></a></td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td>Espaces vectoriels et applications linéaires</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre20.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD20.pdf"><span class="icon-pdf"></span></a></td>
+      </tr>
+      <tr>
+        <td>21</td>
+        <td>Développements limités</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre21.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD21.pdf"><span class="icon-pdf"></span></a></td>
+      </tr>
+      <tr>
+        <td>22</td>
+        <td>Espaces vectoriels de dimension finie</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre22.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD22.pdf"><span class="icon-pdf"></span></a></td>
+      </tr>
+      <tr>
+        <td>23</td>
+        <td>Dérivation</td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/Chapitre23.pdf"><span class="icon-pdf"></span> </a></td>
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./TD/TD23.pdf"><span class="icon-pdf"></span></a></td>
+      </tr>
+      <tr>
+        <td colspan="4">
+        <button class="w3-button w3-block ">Afficher plus <i class="fa fa-caret-down"></i></button>
+      </td>
+      </tr>
+      </tbody></table>
+    </div>
+    {% lorem 10 p %}
+  <!-- JQuery Code -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    function remplir_tableau(categorie, table, btn) {
+      $.ajax({
+        type: 'GET',
+        url: "http://127.0.0.1:8000/ajax/",
+        data: {"categorie": categorie},
+        success: function (response) {
+                  
+                  array = response['documents'];
+                  for (let i = 0; i < array.length; i++) {
+                    var fichiers = array[i]['fichiers'].split('\n');
+                    str="";
+                    for (let j = 0; j < fichiers.length; j++) {
+                      str += '<td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/' + fichiers[0] + '"><span class="icon-pdf"></span> </a></td>';
+                    }
+                    table.append('<tr class="ajax-' + categorie + '"><td>'+ i + "</td><td>" + array[i]['title'] + "</td>" + str + "</tr>");
+                  }
+                  btn.find('button').eq(0).html('Afficher moins <i class="fa fa-caret-up"></i>');
+                  table.append(btn);
+        },
+        error: function (error){
+          console.log(error);
+        }, 
+      })
+    }
+    $('.w3-button').on('click', function () {
+      var btnTr = $(this).parents('tr').eq(0);
+      
+      if (btnTr.attr("id") == "ajaxed") { // ON ne fait que une requête ajax par bouton
+        var elt = $('.ajax-' + categorie);
+        elt.toggleClass('w3-hide');
+        var representant = elt.eq(0)
+        
+        if (representant.hasClass('w3-hide')) {
+          $(this).html('Afficher plus <i class="fa fa-caret-down"></i>');
+        }else{
+          $(this).html('Afficher moins <i class="fa fa-caret-up"></i>');
+          $('html, body').animate({
+                  scrollTop: representant.offset().top
+                }, 1000);
+        }
+      }
+      else {
+        btnTr.attr("id","ajaxed"); // Indique qu'on aura plus besoin de faire de requête ajax pour ce bouton
+        var table = btnTr.parents('tbody').eq(0); // On récoupère le tableau de la catégorie associée
+        categorie = table.attr("id");
+        remplir_tableau(categorie, table,btnTr);
+    }})
+
+    $('#sort').on('click', function() { 
+    var table = $(this).parents('tbody').eq(0);
+    var indices = table.find('tr:gt(0)').toArray().reverse();
+    console.log(indices[0]); 
+    for (var i = 0; i < indices.length; i++) {
+        table.append(indices[i]);
+      }
+    });
+  </script>
+
+</body>
+  </html>

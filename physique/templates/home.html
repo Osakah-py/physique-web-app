@@ -28,7 +28,7 @@
   <center> <p>{{ cat.description }}</p> </center>
 
   <table class="w3-table w3-striped w3-bordered">
-    <tbody><tr>
+    <tbody id="{{ cat.pk }}"><tr>
       <th ><i class="fa-solid fa-sort sort"></i></th>
       {% for h in cat.get_head %}
         {% if forloop.first %}
@@ -48,8 +48,15 @@
           {% else %}
             <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href=""> </a></td>
           {% endif %}
-      {% endfor %}
-    </tr>
+          {% endfor %}
+        </tr>
+      {% if forloop.counter == cat.nombre_affichage %}
+      <tr>
+        <td colspan="4">
+        <button class="w3-button w3-block ">Afficher plus <i class="fa fa-caret-down"></i></button>
+      </td>
+      </tr>
+      {% endif %}
       {% endfor %}
     </tbody>
   </table>
