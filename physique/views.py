@@ -9,7 +9,6 @@ def accueil(request):
     for category in categories:
         start = category.nombre_affichage
         documents = Document.objects.filter(categorie=category).order_by('-pk')[:start]
-        l_doc = len(documents)
 
         documents_by_category[category] = documents
     

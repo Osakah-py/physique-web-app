@@ -28,7 +28,7 @@
   <center> <p>{{ cat.description }}</p> </center>
 
   <table class="w3-table w3-striped w3-bordered">
-    <tbody id="{{ cat.pk }}"><tr>
+    <tbody id="{{ cat.pk }}" max="{{cat.nombre_affichage}}"><tr>
       <th ><i class="fa-solid fa-sort sort"></i></th>
       {% for h in cat.get_head %}
         {% if forloop.first %}

@@ -32,11 +32,8 @@ class Document(models.Model):
     def split(self):
         c = self.categorie.colonnes
         liste = self.fichiers.strip().split("\n")[0:c] 
-        print("before / after : *" + str(c))
-        print(liste)
         for i in range (0, c-len(liste)):
             liste.append("")
-        print (liste)
         return liste
 
     def __str__(self):

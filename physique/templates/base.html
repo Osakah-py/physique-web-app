@@ -148,7 +148,7 @@
         </div>
       
         <!-- Navbar on small screens -->
-        <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium" style="opacity: 0.9;">
+        <div id="navDemo" class="w3-bar-block w3-white w3-hide-large w3-hide-medium" style="opacity: 0.9;display: none;">
           {% for cat, documents in documents_by_category.items %}
           <a href="#{{ cat.title }}" class="w3-bar-item w3-button" onclick="toggleFunction()">{{ cat.title }}</a>
           {% endfor %}

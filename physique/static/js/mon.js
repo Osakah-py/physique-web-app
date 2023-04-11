@@ -1,7 +1,8 @@
 // ---------------------------------Fonctions générales--------------------------------------------------------
 
 function toggleFunction() {
-  $('#navDemo').toggleClass('w3-show');
+  // $('#navDemo').toggleClass('w3-show');
+  $('#navDemo').slideToggle();
 }
 
 // requêt ajax pour compléter un tableau
@@ -12,15 +13,18 @@ function remplir_tableau(categorie, table, btn) {
     data: {"categorie": categorie},
     success: function (response) {
               array = response['documents'];
+              let indiceStart = parseInt(table.attr('max')) + 1; //On récupère le précédent indice max
               for (let i = 0; i < array.length; i++) {
+                var indice = indiceStart + i;
+                console.log(indice);
                 // Split de la chaîne "fichiers" pour traiter chaque fichier séparément
                 var fichiers = array[i]['fichiers'].split('\n');
                 // str correspondra après la boucle au html contenant toutes les colonnes de fichiers
                 str="";
                 for (let j = 0; j < fichiers.length; j++) {
-                  str += '<td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="./cours/' + fichiers[0] + '"><span class="icon-pdf"></span> </a></td>';
+                  str += '<td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="https://physique.mp2i-champo.fr/' + fichiers[0] + '"><span class="icon-pdf"></span> </a></td>';
                 }
-                table.append('<tr class="ajax-' + categorie + '"><td>'+ i + "</td><td>" + array[i]['title'] + "</td>" + str + "</tr>");
+                table.append('<tr class="ajax-' + categorie + '"><td>'+ indice + "</td><td>" + array[i]['title'] + "</td>" + str + "</tr>");
               }
               btn.find('button').eq(0).html('Afficher moins <i class="fa fa-caret-up"></i>');
               table.append(btn);
@@ -35,7 +39,7 @@ function remplir_tableau(categorie, table, btn) {
 $(function() {
   
   // fonction afficher plus / afficher moins 
-  $('.w3-button').on('click', function () {
+  $('.w3-button.w3-block').on('click', function () {
     var btnTr = $(this).parents('tr').eq(0);
     
     if (btnTr.attr("id") == "ajaxed") { // ON ne fait que une requête ajax par bouton
@@ -49,7 +53,7 @@ $(function() {
       else{
         $(this).html('Afficher moins <i class="fa fa-caret-up"></i>');
         $('html, body').animate({
-          scrollTop: representant.offset().top
+          scrollTop: representant.offset().top - 50
         }, 500);
       }
     }
@@ -65,7 +69,7 @@ $(function() {
     $('i.sort').on('click', function() { 
         var table = $(this).parents('tbody').eq(0);
         var indices = table.find('tr:gt(0)').toArray().reverse();
-        // On creer une execption pour le bouton afficher plus
+        // On creer une execption pour le bouton 'afficher plus'
         var except = indices[indices.length - 1];
         // On déplace chaque élément à la fin du tableau
         for (var i = 0; i < indices.length; i++) {
