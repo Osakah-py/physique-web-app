@@ -9,14 +9,13 @@ function toggleFunction() {
 function remplir_tableau(categorie, table, btn) {
   $.ajax({
     type: 'GET',
-    url: "http://127.0.0.1:8000/ajax/",
+    url: "./ajax/",
     data: {"categorie": categorie},
     success: function (response) {
               array = response['documents'];
               let indiceStart = parseInt(table.attr('max')) + 1; //On récupère le précédent indice max
               for (let i = 0; i < array.length; i++) {
                 var indice = indiceStart + i;
-                console.log(indice);
                 // Split de la chaîne "fichiers" pour traiter chaque fichier séparément
                 var fichiers = array[i]['fichiers'].split('\n');
                 // str correspondra après la boucle au html contenant toutes les colonnes de fichiers
