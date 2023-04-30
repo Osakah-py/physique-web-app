@@ -38,7 +38,7 @@ function remplir_tableau(categorie, table, btn) {
 $(function() {
   
   // fonction afficher plus / afficher moins 
-  $('.w3-button.w3-block').on('click', function () {
+  $('.display-more').on('click', function () {
     var btnTr = $(this).parents('tr').eq(0);
     
     if (btnTr.attr("id") == "ajaxed") { // ON ne fait que une requête ajax par bouton

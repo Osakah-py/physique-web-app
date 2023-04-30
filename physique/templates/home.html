@@ -28,39 +28,76 @@
   <center> <p>{{ cat.description }}</p> </center>
 
   <table class="w3-table w3-striped w3-bordered">
-    <tbody id="{{ cat.pk }}" max="{{cat.nombre_affichage}}"><tr>
-      <th ><i class="fa-solid fa-sort sort"></i></th>
-      {% for h in cat.get_head %}
-        {% if forloop.first %}
-          <th colspan="1" class="w3-center"> {{ h }}</th>
-        {% else %}
-          <th style="text-align: center;"> {{ h }}  </th>
-        {% endif %}
-      {% endfor %}
-    </tr>
-    <tr>
-      {% for doc in documents %}
-        <td>{{ forloop.revcounter }}</td>
-        <td>{{ doc.title }}</td>
-        {% for link in doc.split %}
-          {% if link != '' %}
-            <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="https://physique.mp2i-champo.fr/{{ link }}"><span class="icon-pdf"></span> </a></td>
-          {% else %}
-            <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href=""> </a></td>
-          {% endif %}
-          {% endfor %}
-        </tr>
-      {% if forloop.counter == cat.nombre_affichage %}
+    {# <!-- id et max sont utilisés pour les requêtes ajax -->  #}
+    <tbody id="{{ cat.pk }}" max="{{cat.nombre_affichage}}">
+      <!---------- entête ------------>
       <tr>
-        <td colspan="4">
-        <button class="w3-button w3-block ">Afficher plus <i class="fa fa-caret-down"></i></button>
-      </td>
+        <th ><i class="fa-solid fa-sort sort"></i></th>
+        {% for h in cat.get_head %}
+          {% if forloop.first %}
+            <th colspan="1" class="w3-center"> {{ h }}</th>
+          {% else %}
+            <th style="text-align: center;"> {{ h }}  </th>
+          {% endif %}
+        {% endfor %}
       </tr>
+      <!-- /entête -->
+      {% if user.is_authenticated %}
+      {% include "add-file.html" with id=cat.pk colonnes=cat.colonnes %}
       {% endif %}
-      {% endfor %}
+      <tr>
+        {% for doc in documents %}
+          <td>{{ forloop.revcounter }}</td>
+          <td>{{ doc.title }}</td>
+          {% for link in doc.split %}
+          {# <!-- On traite le cas ou il n'y pas de fichier pour ne pas display le svg pdf -->  #}
+            {% if link != '' %}
+              <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="https://physique.mp2i-champo.fr/{{ link }}"><span class="icon-pdf"></span> </a></td>
+            {% else %}
+              <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href=""> </a></td>
+            {% endif %}
+          {% endfor %}
+      </tr>
+      {# <!-- Bouton Afficher plus pour ajax (cf mon.js action pour la class display-more) -->  #}
+        {% if forloop.counter == cat.nombre_affichage %}
+      <tr>
+        <td colspan='{{ cat.colonnes|add:"2" }}'>
+          <button class="w3-button w3-block display-more">Afficher plus <i class="fa fa-caret-down"></i></button>
+        </td>
+      </tr>
+        {% endif %}
+        {% endfor %}
     </tbody>
   </table>
 </div>
 {% endfor %}
 
+
+
+{% if user.is_authenticated %}
+<script>
+  $('.add-more').on('click', function () {
+    var cat = $(this).parents('tbody').eq(0).attr("id");
+    $('.edit-mode-' + cat).toggleClass('w3-hide');
+    $(this).parents('tr').eq(0).toggleClass('w3-hide');
+  })
+
+  $('.save').on('click', function () {
+    var cat = $(this).parents('tbody').eq(0).attr("id");
+    $('.edit-mode-' + cat).toggleClass('w3-hide');
+    $('#add-more-'+cat).toggleClass('w3-hide');
+  })
+</script>
+{% endif %}
+<script>
+  function previewFile(input){
+      var file = input.files[0];
+      if(file){
+          console.log(file);
+          var label = $(input).parent().find('label');
+          console.log(label);
+          label.html('<span class="icon-pdf"></span> <p> '+file.name+'</p>');
+      }
+  }
+</script>
 {% endblock %}
