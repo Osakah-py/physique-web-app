@@ -23,6 +23,11 @@ class Categorie(models.Model):
     def __str__(self):
         return self.title
 
+# permet de recalculer le nombre de colonnes d'un catégorie au moment de l'enregistrement
+@receiver (models.signals.pre_save, sender=Categorie)
+def cat_pre_save (sender, instance, **kwargs):
+    instance.publish()
+
 class Document(models.Model):
     title = models.CharField(max_length=200)
     fichiers = models.TextField(blank=True, help_text="chaque ligne représente un fichier au format 'fichier.pdf' ")
@@ -38,7 +43,13 @@ class Document(models.Model):
 
     def __str__(self):
         return self.title
+
+class Statistiques(models.Model):
+    nom = models.CharField(max_length=200)
+    telechargements_cette_semaine = models.PositiveIntegerField(default=0)
+    telechargements_semaine_derniere = models.PositiveIntegerField(default=0)
+    telechargements_global = models.PositiveIntegerField(default=0)
+    categorie = models.ForeignKey(Categorie, null=True, on_delete=models.CASCADE)
     
-@receiver (models.signals.pre_save, sender=Categorie)
-def cat_pre_save (sender, instance, **kwargs):
-    instance.publish()
+    def __str__(self):
+        return self.nom

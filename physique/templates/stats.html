@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+<!-- Titre et description pour moteurs de recherche  -->
+{% block title %}La Physique en MP2I au lycée Champollion{% endblock %}
+{% block description %}Retrouvez tous les cours et TD de Physique abordés durant l'année, en MP2I à champo.{% endblock %}
+
+<!-- Barre de navigation  -->
+{% block navigation %}
+<a href="/chimie/" class="w3-bar-item w3-button w3-hide-small w3-right">Chimie&ensp;<i class="fas fa-flask"></i> </a>
+<a href="/" class="w3-bar-item w3-button w3-hide-small w3-right">Physique&ensp;<i class="fas fa-rocket"></i> </a>
+{% endblock %}
+
+<!-- Titre de la page -->
+{% block image %}
+<span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">
+  MP2I <span class="w3-hide-small">CHAMPOLLION</span><span class="w3-hide-large w3-hide-medium">CHAMPO</span>
+</span>
+{% endblock %}
+
+<!-- Contenu de la page  -->
+{% block content %}
+<div class="w3-margin w3-container w3-padding-32">
+    <h2 class="w3-center w3-padding-16">Statistiques des téléchargements</h2>
+<table class="w3-table-all w3-centered" id="sortable-table">
+    <tbody>
+        <tr>
+            <th><i class="fa-solid fa-sort"></i> &nbsp Nom fichier</th>
+            <th><i class="fa-solid fa-sort"></i> &nbsp Cette semaine</th>
+            <th><i class="fa-solid fa-sort"></i> &nbsp Semaine dernière</th>
+            <th><i class="fa-solid fa-sort"></i> &nbsp Depuis le début de l'année</th>
+            <th><i class="fa-solid fa-sort"></i> &nbsp Catégorie</th>
+        </tr>
+      {% for statistique in telechargements %}
+      <tr>
+        <td>{{ statistique.nom }}</td>
+        <td>{{ statistique.telechargements_cette_semaine }}</td>
+        <td>{{ statistique.telechargements_semaine_derniere }}</td>
+        <td>{{ statistique.telechargements_global }}</td>
+        <td>{{ statistique.categorie }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan='5' class="w3-center">Les statistiques des fichiers seront affichées ici au fur et à mesure que les élèves les récupéreront.</td>
+      </tr>
+        
+      
+      {% endfor %}
+    </tbody>
+  </table>
+  
+</div>
+  <script>
+    $(document).ready(function() {
+    // action quand on clique sur une entête
+  $('#sortable-table th').click(function() {
+    changer_icon($(this).find('i'), $('#sortable-table th i'))
+    var table = $(this).parents('table').eq(0);
+    // On créé un tableau de toutes les lignes sauf la premiere qui est l'entête trié avec la fonction comparer
+    var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()));
+    this.asc = !this.asc;
+    if (!this.asc) {
+      rows = rows.reverse();
+    }
+    for (var i = 0; i < rows.length; i++) {
+      table.append(rows[i]);
+    }
+  });
+  
+  function comparer(index) {
+    return function(a, b) {
+      var valA = getCellValue(a, index);
+      var valB = getCellValue(b, index);
+      // Si c'est du texte = ordre numerique sinon alphabétique
+      return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.localeCompare(valB);
+    };
+  }
+  
+  function getCellValue(row, index) {
+    return $(row).children('td').eq(index).text();
+  }
+  function changer_icon(icon, allIcons) {
+    var update = "";
+    // On décide le changement a effectuer  
+      if (icon.hasClass( "fa-sort" )) {
+          // Si l'icône de tri est fa-sort, le changer en fa-sort-down
+          update = "fa-sort-down";
+        } else {
+      // Si l'icône de tri est fa-sort-down, le changer en fa-sort-up sinon l'inverse
+      if (icon.hasClass( "fa-sort-down" )) {
+          update = "fa-sort-up";
+        } else {
+            update = "fa-sort-down";
+        }
+    }
+    // On remet toutes les icons avec celle par défaut
+    allIcons.removeClass("fa-sort-down").removeClass("fa-sort-up").addClass("fa-sort");
+    // On met a jour celle qui vient d'etre cliqué
+    icon.removeClass("fa-sort").addClass(update)
+  }
+});
+  </script>
+
+{% endblock %}

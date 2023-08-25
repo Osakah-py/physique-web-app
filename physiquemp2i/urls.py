@@ -5,7 +5,7 @@ from django.views.static import serve
 
 import physiquemp2i.admin
 
-from django.conf.urls import handler404
+from django.conf.urls import handler404, handler403
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -15,6 +15,7 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'physique.views.handler404'
+handler403 = 'physique.views.handler403'
 
 if settings.DEBUG:
     urlpatterns += [
