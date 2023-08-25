@@ -21,7 +21,7 @@ function remplir_tableau(categorie, table, btn) {
                 // str correspondra après la boucle au html contenant toutes les colonnes de fichiers
                 str="";
                 for (let j = 0; j < fichiers.length; j++) {
-                  str += '<td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="https://physique.mp2i-champo.fr/' + fichiers[0] + '"><span class="icon-pdf"></span> </a></td>';
+                  str += '<td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="https://physique.mp2i-champo.fr/' + fichiers[j] + '"><span class="icon-pdf"></span> </a></td>';
                 }
                 table.append('<tr class="ajax-' + categorie + '"><td>'+ indice + "</td><td>" + array[i]['title'] + "</td>" + str + "</tr>");
               }
