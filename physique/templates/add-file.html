@@ -3,20 +3,55 @@
       <button class="w3-button w3-block add-more">Ajouter <i class="fa-solid fa-plus"></i></button>
     </td>
   </tr>
-  <tr class="edit-mode-{{id}} w3-hide">
-    <td><i class="fa-solid fa-xmark"></i></td>
-    <td><input class="w3-input w3-border" name="first" type="text"></td>
-    {% for i in documents.1.split %}
-      <td style="vertical-align:middle; horizontal-align:middle; text-align: center;" class="image-upload">
-            <label for="file-input-{{ id }}-{{ i }}">
-                <i class="fa-solid fa-file-circle-plus fa-2xl"></i>
-            </label>
-            <input id="file-input-{{ id }}-{{ i }}"  onchange="previewFile(this);" type="file" />
+
+  <form id="myForm-{{id}}" method="POST" action="/ajax/add">
+    <tr class="edit-mode-{{id}} w3-hide">
+      <td><i class="fa-solid fa-xmark"></i></td>
+      <td><input class="w3-input w3-border" name="first" type="text"></td>
+      {% for i in documents.1.split %}
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;" class="image-upload">
+              <label for="file-input-{{ id }}-{{ i }}">
+                  <i class="fa-solid fa-file-circle-plus fa-2xl"></i>
+              </label>
+              <input id="file-input-{{ id }}-{{ i }}" name="{{i}}" onchange="previewFile(this);" type="file" />
+        </td>
+      {% endfor %}
+    </tr>
+    
+    <tr class="edit-mode-{{id}} w3-hide">
+      <td colspan='{{ colonnes|add:"2" }}' class='w3-blue'>
+        <button class="w3-button w3-block save" type="submit">Enregistrer <i class="fa-solid fa-check"></i></button>
       </td>
-    {% endfor %}
-  </tr>
-  <tr class="edit-mode-{{id}} w3-hide">
-    <td colspan='{{ colonnes|add:"2" }}' class='w3-blue'>
-      <button class="w3-button w3-block save">Enregistrer <i class="fa-solid fa-check"></i></button>
-    </td>
-  </tr>
+    </tr>
+  </form>
+
+<script>
+  $(document).ready(function() {
+  $('#myForm-{{id}}').on('submit', function(event) {
+    event.preventDefault();
+    //var formData = $(this).serialize();
+    var form = document.getElementById('myForm-{{id}}');
+    var formData = new FormData(form);
+    console.log(formData);
+  });
+});
+</script>
+
+<!--
+
+
+    <td colspan='{{ colonnes|add:"2" }}'>
+    <form id="myForm" method="POST" action="/ajax/add">
+      {% csrf_token %}
+      <input class="w3-input w3-border" name="first" type="text">
+      {% for i in documents.1.split %}
+        <div class="image-upload">
+          <label for="file-input-{{ id }}-{{ i }}">
+            <i class="fa-solid fa-file-circle-plus fa-2xl"></i>
+          </label>
+          <input id="file-input-{{ id }}-{{ i }}" name="file-{{ i }}" type="file" />
+        </div>
+      {% endfor %}
+      <button type="submit">Envoyer</button>
+    </form>
+  </td>-->

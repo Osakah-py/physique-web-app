@@ -93,9 +93,7 @@
   function previewFile(input){
       var file = input.files[0];
       if(file){
-          console.log(file);
           var label = $(input).parent().find('label');
-          console.log(label);
           label.html('<span class="icon-pdf"></span> <p> '+file.name+'</p>');
       }
   }
