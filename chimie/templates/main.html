@@ -52,6 +52,14 @@ CHIMIE
       {% endif %}
       
     </tr>
+    {% empty %}
+    <!-- Cas particulier ou il n'y a pas de fichiers dans cette catégorie -->
+  </tbody>
+</table>
+      <div class="w3-center">
+        Aucun fichier pour le moment, rendez-vous en janvier pours les options SI.
+      </div>
+
       {% endfor %}
     </tbody>
   </table>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categorie, Document
+from .models import Categorie, Document, Statistiques
 
 from django.contrib import admin
 from .models import Document, Categorie
