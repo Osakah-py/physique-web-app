@@ -1,0 +1,183 @@
+<html lang="en"><head>
+<title>Défis photo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.w3-quarter img{margin-bottom: -6px; cursor: pointer}
+.w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
+</style>
+</head>
+<body class="w3-light-grey" data-new-gr-c-s-check-loaded="14.1122.0" data-gr-ext-installed="">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index: 3; width: 250px; font-weight: bold; display: none; right: 0px;" id="mySidebar">
+  <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a>
+  <a href="#5" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">5 points</a>
+  <a href="#dix" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">8 points</a>
+  <a href="#15" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">10 points</a>
+  <a href="#20" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">12 points</a>
+  <a href="#25" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">15 points</a>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
+  <span class="w3-left w3-padding">Défis photo</span>
+  <a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="w3_open()">☰</a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor: pointer; display: none;" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+
+<div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
+    <div class="w3-content w3-container w3-padding-32" id="5">
+        <h1 class="w3-center">Capture the flag !</h1>
+        <p class="w3-center">Pour valider une photo vous devez la publier dans le chanel <b>#capture-the-flag</b> en indiquant le code de la photo (vous le trouverez en cliquant sur la photo corespondante ci dessous 🔽)</p>
+    </div>
+
+  <!-- Photo grid 5 points -->
+<div class="w3-content w3-container w3-padding-32" id="5"><h1 class="w3-center">5 points</h1></div>
+  <div class="w3-row w3-grayscale-min">
+    <div class="w3-quarter">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146120438729154560/IMG_4134.jpg" style="width:100%" onclick="onClick(this)" alt="5-1">
+   </div>
+
+   <div class="w3-quarter">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146120439043719238/IMG_4137.jpg" style="width:100%" onclick="onClick(this)" alt="5-2">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146120441270902954/IMG_4152.jpg" style="width:100%" onclick="onClick(this)" alt="5-4">
+    </div>
+
+    <div class="w3-quarter">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146219449490362429/Grenoble90-Veks-Van-Hillik-street-art-fest-11.jpg" style="width:100%" onclick="onClick(this)" alt="5-6">
+    </div>
+
+    <div class="w3-quarter">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146120440499151018/IMG_4149.jpg" style="width:100%" onclick="onClick(this)" alt="5-3">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146120477987831888/IMG_4158.jpg" style="width:100%" onclick="onClick(this)" alt="5-5">
+    </div>
+  </div>
+
+
+  <!-- Photo grid 10 points -->
+  <div class="w3-content w3-container w3-padding-64" id="dix"><h1 class="w3-center">8 points</h1></div>
+  <div class="w3-row w3-grayscale-min">
+    <div class="w3-quarter">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146120439651901501/IMG_4141.jpg" style="width:100%" onclick="onClick(this)" alt="10-1">
+   </div>
+
+   <div class="w3-quarter">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146120440817930250/IMG_4150.jpg" style="width:100%" onclick="onClick(this)" alt="10-2">
+    </div>
+
+    <div class="w3-quarter">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146120441589661836/IMG_4156.jpg" style="width:100%" onclick="onClick(this)" alt="10-3">
+    </div>
+
+    <div class="w3-quarter">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146120478264660048/IMG_4160.jpg" style="width:100%" onclick="onClick(this)" alt="10-4">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146120478788943944/IMG_4170.jpg" style="width:100%" onclick="onClick(this)" alt="10-5">
+    </div>
+  </div>
+
+
+  <!-- Photo grid 15 points -->
+  <div class="w3-content w3-container w3-padding-64" id="15"><h1 class="w3-center">10 points</h1></div>
+  <div class="w3-row w3-grayscale-min">
+    <div class="w3-quarter">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146120439928717322/IMG_4144.jpg" style="width:100%" onclick="onClick(this)" alt="15-1">
+   </div>
+
+   <div class="w3-quarter">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146120440201367562/IMG_4146.jpg" style="width:100%" onclick="onClick(this)" alt="15-2">
+    </div>
+
+    <div class="w3-quarter">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146120478507946054/IMG_4168.jpg" style="width:100%" onclick="onClick(this)" alt="15-3">
+    </div>
+
+    <div class="w3-quarter">
+        <img src="https://cdn.discordapp.com/attachments/513043030216015902/1149221963517132840/IMG_20230907_074218.jpg" style="width:100%" onclick="onClick(this)" alt="15-4">
+    </div>
+  </div>
+
+
+  <!-- Photo grid 20 points -->
+  <div class="w3-content w3-container w3-padding-64" id="20"><h1 class="w3-center">12 points</h1></div>
+  <div class="w3-row w3-grayscale-min">
+    <div class="w3-quarter">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146120439316369611/IMG_4139.jpg" style="width:100%" onclick="onClick(this)" alt="20-1">
+   </div>
+
+   <div class="w3-quarter">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146227530324512798/IMG_5328.jpg" style="width:100%" onclick="onClick(this)" alt="20-2">
+    </div>
+
+    <div class="w3-quarter">
+    </div>
+
+    <div class="w3-quarter">
+    </div>
+  </div>
+
+  <!-- Photo grid 25 points -->
+  <div class="w3-content w3-container w3-padding-64" id="25"><h1 class="w3-center">15 points</h1></div>
+  <div class="w3-row w3-grayscale-min">
+    <div class="w3-quarter">
+      <img src="https://cdn.discordapp.com/attachments/1142025772534616084/1146228894731608094/IMG_5354.jpg" style="width:100%" onclick="onClick(this)" alt="25-1">
+   </div>
+
+   <div class="w3-quarter">
+    </div>
+
+    <div class="w3-quarter">
+    </div>
+
+    <div class="w3-quarter">
+    </div>
+  </div>
+
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
+    </div>
+  </div>
+
+
+
+</div>
+  <div class="w3-black w3-center w3-padding-32">Page de @Osakah avec le css de <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
+
+<!-- End page content -->
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+</script>
+
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
