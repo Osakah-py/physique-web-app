@@ -65,9 +65,9 @@
         {% endfor %}
       </tr>
       <!-- /entête -->
-      <!--{% if user.is_authenticated %}
+      {% if user.is_authenticated %}
       {% include "add-file.html" with id=cat.pk colonnes=cat.colonnes %}
-      {% endif %}-->
+      {% endif %}
       <tr>
         {% for doc in documents %}
           <td>{{ forloop.revcounter }}</td>
@@ -105,29 +105,83 @@
 
 
 
-<!--{% if user.is_authenticated %}
+{% if user.is_authenticated %}
 <script>
+  // fermer une page d'édition
+  function close_edit(elt) {
+    var cat = elt.parents('tbody').eq(0).attr("id");
+    $('.edit-mode-' + cat).toggleClass('w3-hide');
+    $('#add-more-'+cat).toggleClass('w3-hide');
+  }
+
   $('.add-more').on('click', function () {
     var cat = $(this).parents('tbody').eq(0).attr("id");
     $('.edit-mode-' + cat).toggleClass('w3-hide');
     $(this).parents('tr').eq(0).toggleClass('w3-hide');
   })
 
-  $('.save').on('click', function () {
-    var cat = $(this).parents('tbody').eq(0).attr("id");
-    $('.edit-mode-' + cat).toggleClass('w3-hide');
-    $('#add-more-'+cat).toggleClass('w3-hide');
+  $('.close').on('click', function () {
+    close_edit($(this))
   })
+
+  // permet d'afficher le chargement et on retourne a la normale dans la fonction unpload
+  function save_btn(btn) {
+    btn.html('<span class="w3-text-orange"> Enregistrement <i class="fa-solid fa-spinner fa-spin-pulse"></i></span>');
+    td = btn.parent('td');
+    td.removeClass("w3-border-blue w3-pale-blue");
+    td.addClass("w3-border-orange w3-pale-yellow");
+  }
+  
+function previewFile(input){
+    var file = input.files[0];
+    var label = $(input).parent().find('label');
+    if(file){
+        label.html('<span class="icon-pdf"></span> <p> '+file.name+'</p>');
+    }
+    else{
+      label.html('<i class="fa-solid fa-file-circle-plus fa-2xl"></i>');
+    }
+}
+
+// requête ajax pour unpload des fichiers
+function unpload(form, formName, nbfiles) {
+  $.ajax({
+    method: 'POST',
+    url: "/ajax/add",
+    processData: false,
+    contentType: false,
+    mimeType: "multipart/form-data",
+    data: form,
+    success: function (response) {
+      
+      var responseObject = JSON.parse(response);
+
+      close_edit($(formName));
+      // On reset le form
+      $(formName)[0].reset()
+      var fm = $(formName).siblings('tr').eq(2);
+      // pour l'affichage des logo pdf
+      for (let i = 0; i < nbfiles; i++) {
+        fm.find('input[type="file"]').each(function (index) {
+          previewFile(this);
+        })
+      }
+      // On reset le bouton
+      var enrg = $(formName).siblings('tr').eq(3).find("td");
+      enrg.removeClass("w3-border-orange w3-pale-yellow");
+      enrg.addClass("w3-border-blue w3-pale-blue");
+      // On remet l'html qui était pas défaut voir dans add-file.html
+      enrg.find('button').eq(0).html('<span class="w3-text-blue">Enregistrer <i class="fa-solid fa-check"></i>');
+      
+      // On ajoute la nouvelle entrée dans le tableau
+        $("<tr><td>/</td><td>"+responseObject['title']+"</td></tr>").insertAfter($(formName).siblings('tr').eq(3))
+      },
+    error: function (error){
+      console.log(error);
+    }, 
+  })
+}
 </script>
 {% endif %}
--->
-<script>
-  function previewFile(input){
-      var file = input.files[0];
-      if(file){
-          var label = $(input).parent().find('label');
-          label.html('<span class="icon-pdf"></span> <p> '+file.name+'</p>');
-      }
-  }
-</script>
+
 {% endblock %}

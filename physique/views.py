@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Categorie, Document, Statistiques
 from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from django.core.exceptions import PermissionDenied
+from django.core.files.storage import FileSystemStorage
 
 # Page principale ou tous les documents sont affichés
 def accueil(request):
@@ -33,7 +34,7 @@ def test(request):
     return render(request, 'test.html')
 
 # Pour le "afficher +"
-def test_ajax(request):
+def more_ajax(request):
     is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
 
     if is_ajax and request.method == 'GET':
@@ -45,6 +46,43 @@ def test_ajax(request):
     else:
         return HttpResponseBadRequest('Invalid request')
 
+def add_ajax(request):
+    is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+
+    if is_ajax and request.method == 'POST':
+        
+        # on récupère les données de l'unpload
+        title = request.POST.get('title','')
+        cat = request.POST.get('cat', '')
+        nbfiles = request.POST.get('nbfiles', '')
+        categorie = Categorie.objects.get(pk=cat)
+        
+        # récuperation des fichiers
+        fss = FileSystemStorage()
+        url_list = ""
+        for field_name, file_data in request.FILES.items():
+        # field_name est le nom du champ de fichier
+        # file_data est un objet UploadedFile contenant les informations sur le fichier
+            print("--------------")
+        # infos du fichier
+            file_name = file_data.name
+            file_size = file_data.size
+            content_type = file_data.content_type
+
+        # pour les logs
+            print(f"Nom du fichier: {file_name}")
+            print(f"Taille du fichier: {file_size} octets")
+            print(f"Type de contenu: {content_type}")
+
+            filename = fss.save(file_name, file_data)
+            url_list += fss.url(filename)
+
+        print("--------------")
+        return JsonResponse({'pk': cat, 'title': title})
+    else:
+        return HttpResponseBadRequest('Invalid request')
+
+# pour traquer les ressources consultées
 def acces_ressource (request):
     fichier = request.GET['fichier']
     cat = request.GET['cat']
