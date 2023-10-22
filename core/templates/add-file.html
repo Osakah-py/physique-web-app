@@ -8,6 +8,8 @@
   <form id="myForm-{{id}}" method="POST">
       <!-- Prtoection contre les attaques csrf -->
     {% csrf_token %}
+    <!-- On indique l'app actuelle -->
+    <input type="hidden" name="app" value="{{ app }}">
     <!-- Categorie des fichiers a ajouter -->
     <input type="hidden" name="cat" value="{{ id }}">
     <!-- Nombre de fihciers -->

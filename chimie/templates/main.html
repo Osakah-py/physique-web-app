@@ -48,7 +48,7 @@
     </tr>
     <!-- /entête -->
     {% if user.is_authenticated %}
-    {% include "add-file.html" with id=cat.pk colonnes=cat.colonnes %}
+    {% include "./add-file.html" with id=cat.pk colonnes=cat.colonnes app="chimie" %}
     {% endif %}
     <tr>
       {% for doc in documents %}
@@ -128,7 +128,7 @@
   function unpload(form, formName, nbfiles) {
     $.ajax({
       method: 'POST',
-      url: "/ajax/add",
+      url: "/core/ajax/add",
       processData: false,
       contentType: false,
       mimeType: "multipart/form-data",

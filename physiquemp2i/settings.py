@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'physique.apps.PhysiqueConfig',
     'chimie.apps.ChimieConfig',
+    'core.apps.CoreConfig',
 ]
 
 MIDDLEWARE = [
