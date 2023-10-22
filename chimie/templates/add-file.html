@@ -1,0 +1,63 @@
+<tr id='add-more-{{id}}'>
+    <td colspan='{{ colonnes|add:"2" }}'>
+      <button class="w3-button w3-block add-more">Ajouter <i class="fa-solid fa-plus"></i></button>
+    </td>
+  </tr>
+
+  <!-- Formulaire d'unpload -->
+  <form id="myForm-{{id}}" method="POST">
+      <!-- Prtoection contre les attaques csrf -->
+    {% csrf_token %}
+    <!-- Categorie des fichiers a ajouter -->
+    <input type="hidden" name="cat" value="{{ id }}">
+    <!-- Nombre de fihciers -->
+    <input type="hidden" name="nbfiles" value="{{ colonnes }}">
+    <tr class="edit-mode-{{id}} w3-hide">
+      
+      <!-- Bouton pour fermer la fenetre -->
+      <td class="close"><i class="fa-solid fa-xmark"></i></td>
+      
+      <!-- Titre du champ -->
+      <td><input class="w3-input w3-border" name="title" type="text"></td>
+      <!-- Champs pour les fichiers -->
+      {% for i in documents.1.split %}
+        <td style="vertical-align:middle; horizontal-align:middle; text-align: center;" class="image-upload">
+              <label for="file-input-{{ id }}-{{ forloop.counter }}">
+                  <i class="fa-solid fa-file-circle-plus fa-2xl"></i>
+              </label>
+              <input id="file-input-{{ id }}-{{ forloop.counter }}" name="{{ forloop.counter }}" onchange="previewFile(this);" type="file" />
+        </td>
+      {% endfor %}
+    </tr>
+    
+    <!-- Submit button -->
+    <tr class="edit-mode-{{id}} w3-hide">
+      <td colspan='{{ colonnes|add:"2" }}' class='w3-border w3-border-blue w3-pale-blue'>
+        <button class="w3-button w3-block save" type="submit">
+          <span class="w3-text-blue">
+            Enregistrer <i class="fa-solid fa-check"></i>
+          </span>
+        </button>
+      </td>
+    </tr>
+  </form>
+
+<script>
+  $(document).ready(function() {
+  $('#myForm-{{id}}').on('submit', function(event) {
+    event.preventDefault();
+   // $('#myForm-{{id}}').insertBefore($('#myForm-{{id}}').parents('table').eq(0));
+    //On vérifie que le champ titre n'est pas vide
+    var fm = $('#myForm-{{id}}').siblings('tr').eq(2);
+    if (fm.find("td").eq(1).find('input[name="title"]').val() == ''){
+      fm.find("td").eq(1).append( '<span class="w3-text-red">Veuillez ajouter un titre !</span>' )
+    }
+    else{
+      save_btn($('#myForm-{{id}}').siblings('tr').eq(3).find("td button"))
+      var form = document.getElementById('myForm-{{id}}');
+      var formData = new FormData(form);
+      unpload(formData, '#myForm-{{id}}', {{ colonnes }});
+    }
+  });
+});
+</script>
