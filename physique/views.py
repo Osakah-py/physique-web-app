@@ -40,7 +40,7 @@ def test_ajax(request):
         cat = request.GET.get("categorie", None)
         categorie = Categorie.objects.get(pk=cat)
         start = categorie.nombre_affichage
-        documents = list(Document.objects.filter(categorie=categorie).order_by('-pk')[start:].values('title','fichiers'))
+        documents = list(Document.objects.filter(categorie=categorie).order_by('-pk')[start:].values('title','fichiers','visible'))
         return JsonResponse({'documents': documents})
     else:
         return HttpResponseBadRequest('Invalid request')

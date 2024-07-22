@@ -65,11 +65,9 @@
         {% endfor %}
       </tr>
       <!-- /entête -->
-      <!--{% if user.is_authenticated %}
-      {% include "add-file.html" with id=cat.pk colonnes=cat.colonnes %}
-      {% endif %}-->
-      <tr>
-        {% for doc in documents %}
+
+      {% for doc in documents %}
+      <tr {%if not doc.visible %}style="opacity:50%"{% endif %}>
           <td>{{ forloop.revcounter }}</td>
           <td>{{ doc.title }}</td>
           {% for link in doc.split %}
@@ -79,9 +77,9 @@
             {% else %}
               <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href=""> </a></td>
             {% endif %}
-          
-          {% endfor %}
-      </tr>
+      {% endfor %}
+    </tr> {# <!-- Le </tr> est en dehors du for sinon l'affichage bug ne me demandez pas pourquoi -->  #}
+
       {# <!-- Bouton Afficher plus pour ajax (cf mon.js action pour la class display-more) -->  #}
         {% if forloop.counter == cat.nombre_affichage %}
       <tr>

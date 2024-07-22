@@ -31,6 +31,7 @@ def cat_pre_save (sender, instance, **kwargs):
 class Document(models.Model):
     title = models.CharField(max_length=200)
     fichiers = models.TextField(blank=True, help_text="chaque ligne représente un fichier au format 'fichier.pdf' ")
+    visible = models.BooleanField(default=False)
     categorie = models.ForeignKey(Categorie, null=True, on_delete=models.CASCADE)
     
     # renvoit les liens sous la forme de liste de taille du nombre de colonnes de la Categorie associée
