@@ -10,10 +10,14 @@ def accueil(request):
     categories = Categorie.objects.order_by('pk')
     for category in categories:
         start = category.nombre_affichage
-        documents = Document.objects.filter(categorie=category).order_by('-pk')[:start]
 
-        documents_by_category[category] = documents
-    
+        if request.user.is_authenticated:
+            documents = Document.objects.filter(categorie=category).order_by('-pk')[:start]
+            documents_by_category[category] = documents
+        else: 
+            documents = Document.objects.filter(categorie=category, visible=True).order_by('-pk')[:start]
+            documents_by_category[category] = documents 
+
     return render(request, 'home.html', {'documents_by_category': documents_by_category})
 
 # pour le google bot (indexation moteur de recherche)
@@ -40,7 +44,11 @@ def test_ajax(request):
         cat = request.GET.get("categorie", None)
         categorie = Categorie.objects.get(pk=cat)
         start = categorie.nombre_affichage
-        documents = list(Document.objects.filter(categorie=categorie).order_by('-pk')[start:].values('title','fichiers','visible'))
+        documents = []
+        if request.user.is_authenticated:
+            documents = list(Document.objects.filter(categorie=categorie).order_by('-pk')[start:].values('title','fichiers','visible'))
+        else: 
+            documents = list(Document.objects.filter(categorie=categorie, visible=True).order_by('-pk')[start:].values('title','fichiers','visible'))
         return JsonResponse({'documents': documents})
     else:
         return HttpResponseBadRequest('Invalid request')
