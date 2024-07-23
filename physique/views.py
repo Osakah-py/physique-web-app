@@ -6,19 +6,21 @@ from django.core.exceptions import PermissionDenied
 # Page principale ou tous les documents sont affichés
 def accueil(request):
     documents_by_category = {}
+    admin_view = request.COOKIES.get('admin_view') == 'True' 
+    print("Admin view ?", admin_view)
 
     categories = Categorie.objects.order_by('pk')
     for category in categories:
         start = category.nombre_affichage
 
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and admin_view:
             documents = Document.objects.filter(categorie=category).order_by('-pk')[:start]
             documents_by_category[category] = documents
         else: 
             documents = Document.objects.filter(categorie=category, visible=True).order_by('-pk')[:start]
             documents_by_category[category] = documents 
 
-    return render(request, 'home.html', {'documents_by_category': documents_by_category})
+    return render(request, 'home.html', {'documents_by_category': documents_by_category, 'admin_view':admin_view})
 
 # pour le google bot (indexation moteur de recherche)
 def google(request):
@@ -39,13 +41,14 @@ def test(request):
 # Pour le "afficher +"
 def test_ajax(request):
     is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+    admin_view = request.COOKIES.get('admin_view') == 'True'
 
     if is_ajax and request.method == 'GET':
         cat = request.GET.get("categorie", None)
         categorie = Categorie.objects.get(pk=cat)
         start = categorie.nombre_affichage
         documents = []
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and admin_view:
             documents = list(Document.objects.filter(categorie=categorie).order_by('-pk')[start:].values('title','fichiers','visible'))
         else: 
             documents = list(Document.objects.filter(categorie=categorie, visible=True).order_by('-pk')[start:].values('title','fichiers','visible'))
