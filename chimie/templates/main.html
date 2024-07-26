@@ -24,8 +24,32 @@ CHIMIE
 
 <!-- Contenu de la page  -->
 {% block content %}
+
+<!-----------------------DEBUT SECTION ADMIN------------------------->
+{% if user.is_authenticated %}
+<header class="w3-container w3-center w3-padding-32">
+  <p>
+    <!-- Bouton AFICHAGE/MASQUAGE  -->
+     {% if admin_view %}
+    <button class="w3-button w3-white w3-border w3-border-red w3-pale-red" onclick="setAdminView('False')">
+      <span class="w3-text-red">
+          <i class="fa-solid fa-eye-slash"></i> &nbsp Masquer les éléments cachés
+      </span>
+    </button>
+    {% else %}
+    <button class="w3-button w3-white w3-border w3-border-gray w3-light-gray" onclick="setAdminView('True')">
+      <span class="w3-text-gray">
+          <i class="fa-solid fa-eye"></i> &nbsp Afficher les éléments cachés
+      </span>
+    </button>
+    {% endif %}
+  </p>
+</header>
+{% endif %}
+<!------------------------FIN SECTION ADMIN-------------------------->
+
 {% for cat, documents in documents_by_category.items %}
-<div class="w3-content w3-container w3-padding-64" id="{{ cat.title }}">
+<div class="w3-content w3-container w3-padding-32" id="{{ cat.title }}">
   <h2 class="w3-center">{{ cat.title }}</h2>
   <center> <p>{{ cat.description }}</p> </center>
 
@@ -38,8 +62,8 @@ CHIMIE
       <th style="text-align: center;">Corrections</th>
       {% endif %}
     </tr>
-    <tr>
       {% for doc,corr in documents %}
+      <tr {%if not doc.visible %}style="opacity:50%"{% endif %}>
       <td>{{ forloop.revcounter }}</td>
       <td>{{ doc.title }}</td>
       <td style="vertical-align:middle; horizontal-align:middle; text-align: center;"><a href="/media/{{ doc.fichier }}"><span class="icon-pdf"></span> </a></td>
@@ -65,5 +89,13 @@ CHIMIE
   </table>
 </div>
 {% endfor %}
+
+<script>
+    // permet de modifier le cookie pour afficher/masquer les éléments cachés
+    function setAdminView(value) {
+    document.cookie = "admin_view=" + value + ";path=/";
+    window.location.reload();
+}
+</script>
 
 {% endblock %}

@@ -14,6 +14,7 @@ class Categorie(models.Model):
 class Document(models.Model):
     title = models.CharField(max_length=200)
     fichier = models.FileField(upload_to='chimie/')
+    visible = models.BooleanField(default=False)
     categorie = models.ForeignKey(Categorie, null=True, on_delete=models.CASCADE)
     
     def __str__(self):
