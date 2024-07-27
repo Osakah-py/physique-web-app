@@ -19,7 +19,7 @@ def main(request):
         
         while documents != []:
             curr_doc = documents.pop()
-            if correction == []:
+            if correction == [] or "bonus" in curr_doc.title:
                 documents_by_category[category].append((curr_doc, "N/A"))
             else:
                 curr_corr = correction.pop()
